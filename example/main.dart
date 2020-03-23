@@ -1,10 +1,3 @@
-The library freewig will help to use Wherigo caches in Dart or Flutter
-
-## Usage
-
-A simple usage example:
-
-```dart
 import 'dart:io';
 
 import 'package:freewig/freewig.dart';
@@ -45,10 +38,3 @@ void main(List<String> arguments) async {
     await objectFile.writeAsBytes(data.data);
   });
 }
-```
-
-## Features and bugs
-
-Please file feature requests and bugs at the [issue tracker][tracker].
-
-[tracker]: https://github.com/mars3142/wherigo_parser/issues
