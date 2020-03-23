@@ -12,9 +12,6 @@
  * all copies or substantial portions of the Software.
  */
 
-import 'dart:io';
-import 'dart:typed_data';
-
 import 'package:meta/meta.dart';
 
 import '../binary_reader.dart';
