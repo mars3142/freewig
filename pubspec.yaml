@@ -1,7 +1,5 @@
 name: freewig
 version: 0.0.1-dev
-authors:
-  - Peter Siegmund <developer@mars3142.dev>
 description: >
   The library freewig will help to use Wherigo caches in Dart or Flutter
 homepage: https://github.com/mars3142/freewig
@@ -12,6 +10,7 @@ environment:
 dependencies:
   built_collection: ^4.3.2
   built_value: ^6.8.2
+  meta: ^1.1.8
   path: ^1.6.0
 
 dev_dependencies:
