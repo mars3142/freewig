@@ -13,6 +13,6 @@
  */
 
 export 'src/binary_reader.dart';
-export 'src/models/cartridge_data.dart';
-export 'src/models/object_data.dart';
+export 'src/models/cartridge.dart';
+export 'src/models/media.dart';
 export 'src/parser.dart';

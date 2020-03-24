@@ -14,23 +14,24 @@
 
 import 'dart:typed_data';
 
-///
+/// The [BinaryReader] is a seekable reader of ByteData, where each read updates the
+/// pointer to the next byte.
 class BinaryReader {
   int _index;
   final ByteData _byteData;
   final Endian _endian;
 
-  ///
   BinaryReader._(this._byteData, this._endian) {
     _index = 0;
   }
 
-  ///
+  /// Initialise the [BinaryReader] with data and endian, so the reader knows how to
+  /// interpret the bytes.
   factory BinaryReader(ByteData byteData, Endian endian) {
     return BinaryReader._(byteData, endian);
   }
 
-  ///
+  /// Reset the internal pointer to a specific offset depending on the [SeekOrigin].
   void seek(int offset, SeekOrigin origin) {
     switch (origin) {
       case SeekOrigin.begin:
@@ -47,7 +48,7 @@ class BinaryReader {
     }
   }
 
-  ///
+  /// Read 1 byte and updates the pointer.
   int getByte() {
     var result = _byteData.getUint8(_index);
     _index++;
@@ -55,7 +56,7 @@ class BinaryReader {
     return result;
   }
 
-  ///
+  /// Read 2 bytes as integer and updates the pointer.
   int getShort() {
     var result = _byteData.getInt16(_index, _endian);
     _index += 2;
@@ -63,7 +64,7 @@ class BinaryReader {
     return result;
   }
 
-  ///
+  /// Read 2 bytes as positive integer and updates the pointer.
   int getUShort() {
     var result = _byteData.getUint16(_index, _endian);
     _index += 2;
@@ -71,7 +72,7 @@ class BinaryReader {
     return result;
   }
 
-  ///
+  /// Read 4 bytes as integer and updates the pointer.
   int getLong() {
     var result = _byteData.getInt32(_index, _endian);
     _index += 4;
@@ -79,7 +80,7 @@ class BinaryReader {
     return result;
   }
 
-  ///
+  /// Read 4 bytes as positive integer and updates the pointer.
   int getULong() {
     var result = _byteData.getUint32(_index, _endian);
     _index += 4;
@@ -87,7 +88,7 @@ class BinaryReader {
     return result;
   }
 
-  ///
+  /// Read 8 bytes as double and updates the pointer.
   double getDouble() {
     var result = _byteData.getFloat32(_index, _endian);
     _index += 8;
@@ -95,7 +96,7 @@ class BinaryReader {
     return result;
   }
 
-  ///
+  /// Read until a null terminator, return the string and updates the pointer.
   String getASCIIZ() {
     var result = "";
     var byte = -1;
@@ -111,14 +112,14 @@ class BinaryReader {
   }
 }
 
-///
+/// SeekOrigin is used for resetting the [BinaryReader] to a specific offset.
 enum SeekOrigin {
-  ///
+  /// Count the offset from the beginning.
   begin,
 
-  ///
+  /// Add the offset to the current location.
   current,
 
-  ///
+  /// Set the offset from the end of the byte list.
   end,
 }

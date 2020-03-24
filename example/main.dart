@@ -28,12 +28,12 @@ void main(List<String> arguments) async {
   contents += "\n";
   contents += "Completion-Code: ${cartridge.completionCode}\n";
   contents += "\n";
-  contents += "ItemCount: ${cartridge.objects.length}\n";
+  contents += "ItemCount: ${cartridge.mediaObjects.length}\n";
   contents += "\n";
   var infoFile = File("${export.path}/cartridge_info.txt");
   await infoFile.writeAsString(contents);
 
-  cartridge.objects.forEach((index, data) async {
+  cartridge.mediaObjects.forEach((index, data) async {
     var objectFile = File("${export.path}/object_$index.${data.objectType}");
     await objectFile.writeAsBytes(data.data);
   });

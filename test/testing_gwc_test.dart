@@ -19,7 +19,7 @@ import 'package:freewig/freewig.dart';
 
 void main() {
   group('Cartridge TESTING.GWC', () {
-    CartridgeData cartridgeData;
+    Cartridge cartridgeData;
 
     setUp(() async {
       var file = File("testing.gwc");
@@ -39,7 +39,7 @@ void main() {
     });
 
     test('Gartridge has 2 objects', () {
-      expect(cartridgeData.objects.length, 2);
+      expect(cartridgeData.mediaObjects.length, 2);
     });
   });
 }

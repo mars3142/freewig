@@ -51,4 +51,4 @@ void main(List<String> arguments) async {
 
 Please file feature requests and bugs at the [issue tracker][tracker].
 
-[tracker]: https://github.com/mars3142/wherigo_parser/issues
+[tracker]: https://github.com/mars3142/freewig/issues

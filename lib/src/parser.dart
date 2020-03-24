@@ -16,19 +16,32 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'binary_reader.dart';
-import 'models/cartridge_data.dart';
+import 'models/cartridge.dart';
 
+/// Try to parse a file and create a [Cartridge]
 ///
-Future<CartridgeData> parseFile(File file) async {
-  final header = {0x02, 0x0a, 0x43, 0x41, 0x52, 0x54, 0x00}; // magic header
+/// If the file is a valid GWC file, the result will be [Cartridge] or null, if the parser failed.
+Future<Cartridge> parseFile(File file) async {
   final bytes = await file.readAsBytes();
-  final reader = BinaryReader(ByteData.view(bytes.buffer), Endian.little);
+  return parseData(bytes);
+}
 
-  for (var index = 0; index < header.length; index++) {
-    if (reader.getByte() != header.elementAt(index)) {
-      return null;
+/// Parses a byte list and create a [Cartridge]
+///
+/// If the byte list is a valid GWC file, the result will be [Cartridge] or null, if the parser failed.
+Cartridge parseData(Uint8List bytes) {
+  try {
+    final header = {0x02, 0x0a, 0x43, 0x41, 0x52, 0x54, 0x00}; // magic header
+    final reader = BinaryReader(ByteData.view(bytes.buffer), Endian.little);
+
+    for (var index = 0; index < header.length; index++) {
+      if (reader.getByte() != header.elementAt(index)) {
+        return null;
+      }
     }
-  }
 
-  return CartridgeData(reader);
+    return Cartridge(reader);
+  } on Exception catch(_) {
+    return null;
+  }
 }
