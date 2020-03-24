@@ -18,11 +18,11 @@ import 'package:test/test.dart';
 import 'package:freewig/freewig.dart';
 
 void main() {
-  group('Cartridge GAME_OVER.GWC', () {
+  group('Cartridge TESTING.GWC', () {
     CartridgeData cartridgeData;
 
     setUp(() async {
-      var file = File("cartriges/game_over.gwc");
+      var file = File("testing.gwc");
       cartridgeData = await parseFile(file);
     });
 
@@ -30,16 +30,16 @@ void main() {
       expect(cartridgeData != null, isTrue);
     });
 
-    test('Cartridge name is "GAME OVER"', () {
-      expect(cartridgeData.cartridgeName, "GAME OVER");
+    test('Cartridge name is "TESTING"', () {
+      expect(cartridgeData.cartridgeName, "TESTING");
     });
 
-    test('Completion Code is "HE2DOMRWGEYDCMBT"', () {
-      expect(cartridgeData.completionCode, "HE2DOMRWGEYDCMBT");
+    test('Completion Code is "ABCDEFGHIJKLMNOP"', () {
+      expect(cartridgeData.completionCode, "ABCDEFGHIJKLMNOP");
     });
 
-    test('Gartridge has 44 objects', () {
-      expect(cartridgeData.objects.length, 44);
+    test('Gartridge has 2 objects', () {
+      expect(cartridgeData.objects.length, 2);
     });
   });
 }

@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:freewig/freewig.dart';
 
 void main(List<String> arguments) async {
-  var file = File(arguments[0]);
+  var file = File(arguments[0]); // path/incl/cartridge.gwc
   var cartridge = await parseFile(file);
 
   var export = Directory("export");
