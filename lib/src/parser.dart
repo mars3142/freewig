@@ -41,7 +41,7 @@ Cartridge parseData(Uint8List bytes) {
     }
 
     return Cartridge(reader);
-  } on Exception catch(_) {
+  } on Exception catch (_) {
     return null;
   }
 }

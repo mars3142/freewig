@@ -137,7 +137,7 @@ class Cartridge {
       // initialise objects after cartridge data is loaded
       var objects = <int, Media>{};
       references.forEach((index, address) =>
-      {objects.putIfAbsent(index, () => Media(reader, index, address))});
+          {objects.putIfAbsent(index, () => Media(reader, index, address))});
 
       return Cartridge._(
         cartridgeGuid,

@@ -113,28 +113,40 @@ String _getObjectType(int objectType) {
 enum ObjectType {
   /// object is deleted
   deleted,
+
   /// object is compiled lua code
   luac,
+
   /// object is a BMP file
   bmp,
+
   /// object is a PNG file
   png,
+
   /// object is a JPEG file
   jpg,
+
   /// object is a GIF file
   gif,
+
   /// object is a WAV file
   wav,
+
   /// object is a MP3 file
   mp3,
+
   /// object is a FDL file
   fdl,
+
   /// object is a SND file
   snd,
+
   /// object is a OGG file
   ogg,
+
   /// object is a SWF file
   swf,
+
   /// object is a TXT file
   txt
 }
