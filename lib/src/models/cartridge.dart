@@ -158,7 +158,8 @@ class Cartridge {
         typeOfCartridge: typeOfCartridge,
         version: version,
       );
-    } on Exception catch (_) {
+    } on Exception catch (ex) {
+      print("Exception: $ex");
       return null;
     }
   }

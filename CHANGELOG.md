@@ -1,3 +1,7 @@
+## 0.1.0
+
+- process data within an isolate
+
 ## 0.0.2-dev
 
 - code cleanup

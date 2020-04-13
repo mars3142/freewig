@@ -41,16 +41,17 @@ class Media {
       var objectType = 0;
       reader.seek(address, SeekOrigin.begin);
       if (objectId == 0) {
-        data = _getData(reader);
+        data = _readMediaData(reader);
       } else {
         if (reader.getByte() != 0) {
           objectType = reader.getLong();
-          data = _getData(reader);
+          data = _readMediaData(reader);
         }
       }
       final object = Media._(_getObjectType(objectType), data);
       return object;
-    } on Exception catch (_) {
+    } on Exception catch (ex) {
+      print("Exception: $ex");
       return null;
     }
   }
@@ -67,7 +68,7 @@ class Media {
   int get hashCode => data.hashCode ^ objectType.hashCode;
 }
 
-Uint8List _getData(BinaryReader reader) {
+Uint8List _readMediaData(BinaryReader reader) {
   var length = reader.getLong();
   var data = <int>[];
   for (var index = 0; index < length; index++) {
