@@ -1,4 +1,4 @@
-[![Release Status](https://img.shields.io/pub/v/freewig.svg)][pub_dev] • [![Build Status](https://github.com/mars3142/freewig/workflows/build/badge.svg)][github] • [![License](https://img.shields.io/badge/License-MIT-blue.svg)][license]
+[![Release Status](https://img.shields.io/pub/v/freewig.svg)][pub_dev] [![Build Status](https://github.com/mars3142/freewig/workflows/build/badge.svg)][github] [![License](https://img.shields.io/badge/License-MIT-blue.svg)][license]
 
 ## freewig
 
