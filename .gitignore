@@ -90,3 +90,4 @@ doc/api/
 # testing folder
 cartriges
 export
+pubspec.lock

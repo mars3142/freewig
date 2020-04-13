@@ -1,16 +1,4 @@
-<p align="center">
-  <a href="https://pub.dartlang.org/packages/freewig">
-    <img alt="Pub Package" src="https://img.shields.io/pub/v/freewig.svg">
-  </a>
-  
-  <a href="https://github.com/mars3142/freewig">
-    <img alt="GitHub Actions status" src="https://github.com/mars3142/freewig/workflows/build/badge.svg">
-  </a>
-
-  <a href="https://opensource.org/licenses/MIT">
-    <img alt="MIT License" src="https://img.shields.io/badge/License-MIT-blue.svg">
-  </a>
-</p>
+[![Release Status](https://img.shields.io/pub/v/freewig.svg)][pub_dev] • [![Build Status](https://github.com/mars3142/freewig/workflows/build/badge.svg)][github] • [![License](https://img.shields.io/badge/License-MIT-blue.svg)][license]
 
 ## freewig
 
@@ -24,5 +12,8 @@ An example can be found in example/main.dart
 
 Please file feature requests and bugs at the [issue tracker][tracker].
 
+[github]: https://github.com/mars3142/freewig
 [tracker]: https://github.com/mars3142/freewig/issues
+[license]: https://opensource.org/licenses/MIT
+[pub_dev]: https://pub.dartlang.org/packages/freewig
 [wherigo_hp]: https://www.wherigo.com/
