@@ -1,14 +1,15 @@
-name: build
+name: Test
 
-on: [push, pull_request]
+on: [push]
 
 jobs:
   build_dart_packages:
-    runs-on: ubuntu-latest
-
     strategy:
       matrix:
+        os: ['ubuntu-latest', 'macos-latest', 'windows-latest']
         version: ["latest", "dev"]
+
+    runs-on: ${{ matrix.os }}
 
     container:
       image: google/dart:${{ matrix.version }}
