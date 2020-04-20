@@ -88,6 +88,6 @@ build/
 doc/api/
 
 # testing folder
-cartriges
+cartridges
 export
 pubspec.lock
