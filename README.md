@@ -1,5 +1,6 @@
 [![Build](https://github.com/mars3142/freewig/workflows/Build/badge.svg)][github] 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)][license]
+[![style: effective dart](https://img.shields.io/badge/style-effective_dart-40c4ff.svg)][effective_dart]
 
 [![Pub](https://img.shields.io/pub/v/freewig.svg)][pub_dev]
 [![GitHub release](https://img.shields.io/github/release/mars3142/freewig.svg?label=gh-release)][releases]
@@ -23,4 +24,5 @@ Please file feature requests and bugs at the [issue tracker][tracker].
 [master]: https://github.com/mars3142/freewig/commits/master
 [license]: https://opensource.org/licenses/MIT
 [pub_dev]: https://pub.dartlang.org/packages/freewig
+[effective_dart]: https://github.com/tenhobi/effective_dart
 [wherigo_hp]: https://www.wherigo.com/
