@@ -13,6 +13,7 @@
  */
 
 export 'src/binary_reader.dart';
+export 'src/latlng.dart';
 export 'src/models/cartridge.dart';
 export 'src/models/media.dart';
 export 'src/parser.dart';

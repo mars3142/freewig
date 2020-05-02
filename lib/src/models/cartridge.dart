@@ -14,6 +14,7 @@
 
 import 'package:meta/meta.dart';
 
+import '../../freewig.dart';
 import '../binary_reader.dart';
 import 'media.dart';
 
@@ -26,8 +27,8 @@ class Cartridge {
   /// The [Cartridge] author
   final String author;
 
-  /// The latitude of the start coordinate
-  final double latitude;
+  /// The latitude/longitude of the start coordinate
+  final LatLng latLng;
 
   /// The [Cartridge] name
   final String cartridgeName;
@@ -37,15 +38,6 @@ class Cartridge {
 
   /// A unique [Cartridge] guid
   final String cartridgeGuid;
-
-  /// The longitude of the start coordinate
-  final double longitude;
-
-  /// ID of the [Media] which will be the splash screen
-  final int splashScreenId;
-
-  /// ID of the [Media] for a small icon
-  final int smallIconId;
 
   /// Type of the [Cartridge]
   final String typeOfCartridge;
@@ -71,25 +63,28 @@ class Cartridge {
   /// Map of all [Media] objects
   final Map<int, Media> mediaObjects;
 
+  final int _splashScreenId;
+
+  final int _smallIconId;
+
   Cartridge._(
     this.cartridgeGuid,
-    this.mediaObjects, {
+    this.mediaObjects,
     this.altitude,
     this.author,
     this.cartridgeDesc,
     this.cartridgeName,
     this.company,
     this.completionCode,
-    this.latitude,
-    this.longitude,
+    this.latLng,
     this.playerName,
     this.recommendDevice,
-    this.smallIconId,
-    this.splashScreenId,
+    this._smallIconId,
+    this._splashScreenId,
     this.startLocationDesc,
     this.typeOfCartridge,
     this.version,
-  });
+  );
 
   /// Reading the GWC file and create a [Cartridge] or null in case of any
   /// parsing error.
@@ -142,21 +137,20 @@ class Cartridge {
       return Cartridge._(
         cartridgeGuid,
         objects,
-        altitude: altitude,
-        author: author,
-        cartridgeDesc: cartridgeDesc,
-        cartridgeName: cartridgeName,
-        company: company,
-        completionCode: completionCode,
-        latitude: latitude,
-        longitude: longitude,
-        playerName: playerName,
-        recommendDevice: recommendedDevice,
-        smallIconId: smallIconId,
-        splashScreenId: splashScreenId,
-        startLocationDesc: startLocationDesc,
-        typeOfCartridge: typeOfCartridge,
-        version: version,
+        altitude,
+        author,
+        cartridgeDesc,
+        cartridgeName,
+        company,
+        completionCode,
+        LatLng(latitude, longitude,),
+        playerName,
+        recommendedDevice,
+        smallIconId,
+        splashScreenId,
+        startLocationDesc,
+        typeOfCartridge,
+        version,
       );
     } on Exception catch (ex) {
       print("Exception: $ex");
@@ -174,4 +168,18 @@ class Cartridge {
 
   @override
   int get hashCode => cartridgeGuid.hashCode ^ mediaObjects.hashCode;
+
+  ///
+  Media get splashScreen => mediaObjects.containsKey(_splashScreenId)
+      ? mediaObjects[_splashScreenId]
+      : null;
+
+  ///
+  Media get smallIcon => mediaObjects.containsKey(_smallIconId)
+      ? mediaObjects[_smallIconId]
+      : null;
+
+  ///
+  Media get luac => mediaObjects.containsKey(0) ? mediaObjects[0] : null;
+
 }
