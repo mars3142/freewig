@@ -46,7 +46,7 @@ class LatLng {
     } else {
       result += suffix.substring(0, 1);
     }
-    result += " $degrees° ${minutes.toStringAsFixed(3)}";
+    result += ' $degrees° ${minutes.toStringAsFixed(3)}';
     return result;
   }
 }
