@@ -19,53 +19,34 @@ class LatLng {
   final double _longitude;
 
   /// main constructor
-  const LatLng(this._latitude, this._longitude);
+  const LatLng(double latitude, double longitude)
+      : _latitude = latitude,
+        _longitude = longitude;
 
   /// formatted latitude
-  String latitude() {
+  String get latitude {
     return _format(_latitude, 'NS');
   }
 
   /// formatted longitude
-  String longitude() {
-    return _format(_longitude, 'WE');
+  String get longitude {
+    return _format(_longitude, 'EW');
   }
 
   String _format(double value, String suffix) {
-    while (value < -180.0) {
-      value += 360.0;
-    }
-
-    while (value > 180.0) {
-      value -= 360.0;
-    }
-
-    //switch the value to positive
-    var _isNegative = value < 0;
+    final isNegative = value < 0;
     value = value.abs();
 
-    //gets the degree
-    var _degrees = value.floor();
-    var delta = value - _degrees;
+    final degrees = value.floor();
+    final minutes = (value - degrees) * 60.0;
 
-    //gets minutes and seconds
-    var seconds = (3600.0 * delta).floor();
-    var _seconds = seconds % 60;
-    var _minutes = (seconds / 60.0).floor();
-    delta = delta * 3600.0 - seconds;
-
-    //gets fractions
-    var _milliseconds = (1000.0 * delta).toInt();
-
-    /// N 53° 25.831 E 010° 05.408
     var result = '';
-    if (_isNegative) {
+    if (isNegative) {
       result += suffix.substring(1);
     } else {
       result += suffix.substring(0, 1);
     }
-    result +=
-        " $_degrees° ${_minutes.toString().padLeft(2, '0')}' ${_seconds.toString().padLeft(2, '0')}\".${_milliseconds.toString().padLeft(3, '0')} ";
+    result += " $degrees° ${minutes.toStringAsFixed(3)}";
     return result;
   }
 }
