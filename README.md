@@ -1,4 +1,4 @@
-[![Build](https://github.com/mars3142/freewig/workflows/Build/badge.svg)][github] 
+[![Testing](https://github.com/mars3142/freewig/workflows/Testing/badge.svg)][github] 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)][license]
 [![style: effective dart](https://img.shields.io/badge/style-effective_dart-40c4ff.svg)][effective_dart]
 
