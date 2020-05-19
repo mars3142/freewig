@@ -24,12 +24,12 @@ class LatLng {
 
   ///
   String latitude() {
-    return _format(_latitude, "NS");
+    return _format(_latitude, 'NS');
   }
 
   ///
   String longitude() {
-    return _format(_longitude, "WE");
+    return _format(_longitude, 'WE');
   }
 
   String _format(double value, String suffix) {
@@ -65,7 +65,7 @@ class LatLng {
     } else {
       result += suffix.substring(0, 1);
     }
-    result += " $_degrees° ${_minutes.toString().padLeft(2, "0")}' ${_seconds.toString().padLeft(2, "0")}\".${_milliseconds.toString().padLeft(3, "0")} ";
+    result += " $_degrees° ${_minutes.toString().padLeft(2, '0')}' ${_seconds.toString().padLeft(2, '0')}\".${_milliseconds.toString().padLeft(3, '0')} ";
     return result;
   }
 }

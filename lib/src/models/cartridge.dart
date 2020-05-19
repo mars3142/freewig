@@ -153,7 +153,7 @@ class Cartridge {
         version,
       );
     } on Exception catch (ex) {
-      print("Exception: $ex");
+      print('Exception: $ex');
       return null;
     }
   }

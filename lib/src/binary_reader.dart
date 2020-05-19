@@ -98,7 +98,7 @@ class BinaryReader {
 
   /// Read until a null terminator, return the string and updates the pointer.
   String getASCIIZ() {
-    var result = "";
+    var result = '';
     var byte = -1;
 
     while (byte != 0) {

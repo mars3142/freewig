@@ -51,7 +51,7 @@ class Media {
       final object = Media._(_getObjectType(objectType), data);
       return object;
     } on Exception catch (ex) {
-      print("Exception: $ex");
+      print('Exception: $ex');
       return null;
     }
   }
@@ -106,7 +106,7 @@ String _getObjectType(int objectType) {
     case 49:
       return ObjectType.txt.toShortString();
     default:
-      return "invalid ($objectType)";
+      return 'invalid ($objectType)';
   }
 }
 
