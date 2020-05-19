@@ -17,14 +17,14 @@ void main(List<String> arguments) async {
   contents += "Name: ${cartridge.cartridgeName}\n";
   contents += "Description: ${cartridge.cartridgeDesc}\n";
   contents += "StartLocation: ${cartridge.startLocationDesc}\n";
-  contents += "Latitude: ${cartridge.latLng.latitude()}\n";
-//  contents += "Longitude: ${cartridge.latLng.longitude()}\n";
+  contents += "Latitude: ${cartridge.latLng.latitude}\n";
+  contents += "Longitude: ${cartridge.latLng.longitude}\n";
   contents += "Player: ${cartridge.playerName}\n";
   contents += "Author: ${cartridge.author}\n";
   contents += "Type: ${cartridge.typeOfCartridge}\n";
   contents += "Device: ${cartridge.recommendDevice}\n";
   contents += "Version: ${cartridge.version}\n";
-  contents += "Catridge-Id: ${cartridge.cartridgeGuid}\n";
+  contents += "Cartridge-Id: ${cartridge.cartridgeGuid}\n";
   contents += "\n";
   contents += "Completion-Code: ${cartridge.completionCode}\n";
   contents += "\n";

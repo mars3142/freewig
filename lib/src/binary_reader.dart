@@ -90,7 +90,7 @@ class BinaryReader {
 
   /// Read 8 bytes as double and updates the pointer.
   double getDouble() {
-    var result = _byteData.getFloat32(_index, _endian);
+    var result = _byteData.getFloat64(_index, _endian);
     _index += 8;
 
     return result;
