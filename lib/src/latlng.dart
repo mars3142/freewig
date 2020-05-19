@@ -59,7 +59,7 @@ class LatLng {
     var _milliseconds = (1000.0 * delta).toInt();
 
     /// N 53° 25.831 E 010° 05.408
-    var result = "";
+    var result = '';
     if (_isNegative) {
       result += suffix.substring(1);
     } else {
