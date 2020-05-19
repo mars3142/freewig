@@ -12,8 +12,6 @@
  * all copies or substantial portions of the Software.
  */
 
-import 'dart:math';
-
 import 'package:test/test.dart';
 import 'package:freewig/freewig.dart';
 
