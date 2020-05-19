@@ -143,7 +143,10 @@ class Cartridge {
         cartridgeName,
         company,
         completionCode,
-        LatLng(latitude, longitude,),
+        LatLng(
+          latitude,
+          longitude,
+        ),
         playerName,
         recommendedDevice,
         smallIconId,
@@ -181,5 +184,4 @@ class Cartridge {
 
   ///
   Media get luac => mediaObjects.containsKey(0) ? mediaObjects[0] : null;
-
 }

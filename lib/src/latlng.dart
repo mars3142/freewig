@@ -12,22 +12,21 @@
  * all copies or substantial portions of the Software.
  */
 
-///
+/// latitude / longitude class with helper functions for human readable formatting
 class LatLng {
-
   final double _latitude;
 
   final double _longitude;
 
-  ///
+  /// main constructor
   const LatLng(this._latitude, this._longitude);
 
-  ///
+  /// formatted latitude
   String latitude() {
     return _format(_latitude, 'NS');
   }
 
-  ///
+  /// formatted longitude
   String longitude() {
     return _format(_longitude, 'WE');
   }
@@ -65,7 +64,8 @@ class LatLng {
     } else {
       result += suffix.substring(0, 1);
     }
-    result += " $_degrees° ${_minutes.toString().padLeft(2, '0')}' ${_seconds.toString().padLeft(2, '0')}\".${_milliseconds.toString().padLeft(3, '0')} ";
+    result +=
+        " $_degrees° ${_minutes.toString().padLeft(2, '0')}' ${_seconds.toString().padLeft(2, '0')}\".${_milliseconds.toString().padLeft(3, '0')} ";
     return result;
   }
 }
