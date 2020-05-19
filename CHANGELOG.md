@@ -1,3 +1,8 @@
+## 0.1.1
+
+- add new LatLng class for location
+- fix location parsing from cartridge
+
 ## 0.1.0
 
 - process data within an isolate
