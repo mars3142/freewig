@@ -125,7 +125,7 @@ class Cartridge {
       final company = reader.getASCIIZ();
       final recommendedDevice = reader.getASCIIZ();
 
-      final unknown4 = reader.getLong(); // unknown 4
+      reader.getLong(); // unknown 4
 
       final completionCode = reader.getASCIIZ();
 
