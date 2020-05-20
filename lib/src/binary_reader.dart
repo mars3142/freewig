@@ -17,19 +17,16 @@ import 'dart:typed_data';
 /// The [BinaryReader] is a seekable reader of ByteData, where each read updates the
 /// pointer to the next byte.
 class BinaryReader {
-  int _index;
   final ByteData _byteData;
   final Endian _endian;
-
-  BinaryReader._(this._byteData, this._endian) {
-    _index = 0;
-  }
+  int _index;
 
   /// Initialise the [BinaryReader] with data and endian, so the reader knows how to
   /// interpret the bytes.
-  factory BinaryReader(ByteData byteData, Endian endian) {
-    return BinaryReader._(byteData, endian);
-  }
+  BinaryReader({ByteData byteData, Endian endian})
+      : _byteData = byteData,
+        _endian = endian,
+        _index = 0;
 
   /// Reset the internal pointer to a specific offset depending on the [SeekOrigin].
   void seek(int offset, SeekOrigin origin) {
