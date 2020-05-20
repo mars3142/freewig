@@ -69,8 +69,8 @@ class Media {
 }
 
 Uint8List _readMediaData(BinaryReader reader) {
-  var length = reader.getLong();
-  var data = <int>[];
+  final length = reader.getLong();
+  final data = <int>[];
   for (var index = 0; index < length; index++) {
     data.add(reader.getByte());
   }

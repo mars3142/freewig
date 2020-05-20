@@ -15,7 +15,6 @@
 /// latitude / longitude class with helper functions for human readable formatting
 class LatLng {
   final double _latitude;
-
   final double _longitude;
 
   /// main constructor

@@ -50,7 +50,7 @@ class BinaryReader {
 
   /// Read 1 byte and updates the pointer.
   int getByte() {
-    var result = _byteData.getUint8(_index);
+    final result = _byteData.getUint8(_index);
     _index++;
 
     return result;
@@ -58,7 +58,7 @@ class BinaryReader {
 
   /// Read 2 bytes as integer and updates the pointer.
   int getShort() {
-    var result = _byteData.getInt16(_index, _endian);
+    final result = _byteData.getInt16(_index, _endian);
     _index += 2;
 
     return result;
@@ -66,7 +66,7 @@ class BinaryReader {
 
   /// Read 2 bytes as positive integer and updates the pointer.
   int getUShort() {
-    var result = _byteData.getUint16(_index, _endian);
+    final result = _byteData.getUint16(_index, _endian);
     _index += 2;
 
     return result;
@@ -74,7 +74,7 @@ class BinaryReader {
 
   /// Read 4 bytes as integer and updates the pointer.
   int getLong() {
-    var result = _byteData.getInt32(_index, _endian);
+    final result = _byteData.getInt32(_index, _endian);
     _index += 4;
 
     return result;
@@ -82,7 +82,7 @@ class BinaryReader {
 
   /// Read 4 bytes as positive integer and updates the pointer.
   int getULong() {
-    var result = _byteData.getUint32(_index, _endian);
+    final result = _byteData.getUint32(_index, _endian);
     _index += 4;
 
     return result;
@@ -90,7 +90,7 @@ class BinaryReader {
 
   /// Read 8 bytes as double and updates the pointer.
   double getDouble() {
-    var result = _byteData.getFloat64(_index, _endian);
+    final result = _byteData.getFloat64(_index, _endian);
     _index += 8;
 
     return result;

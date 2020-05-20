@@ -90,47 +90,47 @@ class Cartridge {
   /// parsing error.
   factory Cartridge(BinaryReader reader) {
     try {
-      var count = reader.getUShort();
-      var references = <int, int>{};
+      final count = reader.getUShort();
+      final references = <int, int>{};
       for (var index = 0; index < count; index++) {
-        var objectId = reader.getShort();
-        var address = reader.getLong();
+        final objectId = reader.getShort();
+        final address = reader.getLong();
         references.putIfAbsent(objectId, () => address);
       }
 
       reader.getLong(); // header length
 
-      var latitude = reader.getDouble();
-      var longitude = reader.getDouble();
-      var altitude = reader.getDouble();
+      final latitude = reader.getDouble();
+      final longitude = reader.getDouble();
+      final altitude = reader.getDouble();
 
       reader.getLong(); // unknown 0
       reader.getLong(); // unknown 1
 
-      var splashScreenId = reader.getShort();
-      var smallIconId = reader.getShort();
+      final splashScreenId = reader.getShort();
+      final smallIconId = reader.getShort();
 
-      var typeOfCartridge = reader.getASCIIZ();
-      var playerName = reader.getASCIIZ();
+      final typeOfCartridge = reader.getASCIIZ();
+      final playerName = reader.getASCIIZ();
 
       reader.getLong(); // unknown 2
       reader.getLong(); // unknown 3
 
-      var cartridgeName = reader.getASCIIZ();
-      var cartridgeGuid = reader.getASCIIZ();
-      var cartridgeDesc = reader.getASCIIZ();
-      var startLocationDesc = reader.getASCIIZ();
-      var version = reader.getASCIIZ();
-      var author = reader.getASCIIZ();
-      var company = reader.getASCIIZ();
-      var recommendedDevice = reader.getASCIIZ();
+      final cartridgeName = reader.getASCIIZ();
+      final cartridgeGuid = reader.getASCIIZ();
+      final cartridgeDesc = reader.getASCIIZ();
+      final startLocationDesc = reader.getASCIIZ();
+      final version = reader.getASCIIZ();
+      final author = reader.getASCIIZ();
+      final company = reader.getASCIIZ();
+      final recommendedDevice = reader.getASCIIZ();
 
-      reader.getLong(); // unknown 4
+      final unknown4 = reader.getLong(); // unknown 4
 
-      var completionCode = reader.getASCIIZ();
+      final completionCode = reader.getASCIIZ();
 
       // initialise objects after cartridge data is loaded
-      var objects = <int, Media>{};
+      final objects = <int, Media>{};
       references.forEach((index, address) =>
           {objects.putIfAbsent(index, () => Media(reader, index, address))});
 
