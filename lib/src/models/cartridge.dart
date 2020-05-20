@@ -172,16 +172,16 @@ class Cartridge {
   @override
   int get hashCode => cartridgeGuid.hashCode ^ mediaObjects.hashCode;
 
-  ///
+  /// get splash screen media or null if not available
   Media get splashScreen => mediaObjects.containsKey(_splashScreenId)
       ? mediaObjects[_splashScreenId]
       : null;
 
-  ///
+  /// get small icon media or null if not available
   Media get smallIcon => mediaObjects.containsKey(_smallIconId)
       ? mediaObjects[_smallIconId]
       : null;
 
-  ///
+  /// get luac media or null if not available
   Media get luac => mediaObjects.containsKey(0) ? mediaObjects[0] : null;
 }
