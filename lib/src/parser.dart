@@ -12,8 +12,8 @@
  * all copies or substantial portions of the Software.
  */
 
+import 'dart:async';
 import 'dart:io';
-import 'dart:isolate';
 import 'dart:typed_data';
 
 import 'binary_reader.dart';
@@ -23,25 +23,12 @@ import 'models/cartridge.dart';
 ///
 /// If the file is a valid GWC file, the result will be [Cartridge] or null, if the parser failed.
 Future<Cartridge> parseFile(File file) async {
-  final receivePort = ReceivePort();
-  final message = _ParseData(receivePort.sendPort, file);
-  await Isolate.spawn(_parseFile, message);
-
-  return await receivePort.first;
-}
-
-void _parseFile(_ParseData message) async {
-  final bytes = await message.file.readAsBytes();
-  final cartridge = parseData(bytes);
-
-  message.sendPort.send(cartridge);
-}
-
-class _ParseData {
-  final SendPort sendPort;
-  final File file;
-
-  const _ParseData(this.sendPort, this.file);
+  final bytes = await file.readAsBytes();
+  final completer = Completer<Cartridge>();
+  Future<Cartridge>(() => parseData(bytes))
+      .then(completer.complete)
+      .catchError(completer.completeError);
+  return completer.future;
 }
 
 /// Parses a byte list and create a [Cartridge]
