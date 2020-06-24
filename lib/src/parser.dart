@@ -25,7 +25,7 @@ import 'models/cartridge.dart';
 Future<Cartridge> parseFile(File file) async {
   final bytes = await file.readAsBytes();
   final completer = Completer<Cartridge>();
-  Future<Cartridge>(() => parseData(bytes))
+  await Future<Cartridge>(() => parseData(bytes))
       .then(completer.complete)
       .catchError(completer.completeError);
   return completer.future;
