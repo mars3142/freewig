@@ -1,3 +1,7 @@
+## 0.1.2
+
+- remove dart:isolate - so it's compatible with web
+
 ## 0.1.1+1
 
 - add new LatLng class for location
