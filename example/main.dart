@@ -1,6 +1,16 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:freewig/freewig.dart';
+
+Future<Cartridge> parseFile(File file) async {
+  final bytes = await file.readAsBytes();
+  final completer = Completer<Cartridge>();
+  await Future<Cartridge>(() => parseData(bytes))
+      .then(completer.complete)
+      .catchError(completer.completeError);
+  return completer.future;
+}
 
 void main(List<String> arguments) async {
   var file = File(arguments[0]); // path/incl/cartridge.gwc

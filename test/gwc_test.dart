@@ -12,10 +12,20 @@
  * all copies or substantial portions of the Software.
  */
 
+import 'dart:async';
 import 'dart:io';
 
 import 'package:test/test.dart';
 import 'package:freewig/freewig.dart';
+
+Future<Cartridge> parseFile(File file) async {
+  final bytes = await file.readAsBytes();
+  final completer = Completer<Cartridge>();
+  await Future<Cartridge>(() => parseData(bytes))
+      .then(completer.complete)
+      .catchError(completer.completeError);
+  return completer.future;
+}
 
 void main() {
   group('Cartridge TESTING.GWC', () {
@@ -38,7 +48,7 @@ void main() {
       expect(cartridgeData.completionCode, "ABCDEFGHIJKLMNOP");
     });
 
-    test('Gartridge has 2 objects', () {
+    test('Cartridge has 2 objects', () {
       expect(cartridgeData.mediaObjects.length, 2);
     });
   });
