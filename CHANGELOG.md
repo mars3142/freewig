@@ -1,3 +1,7 @@
+## 0.1.2+2
+
+- remove dart:io - more web compatibility
+
 ## 0.1.2+1
 
 - remove dart:isolate - so it's compatible with web
