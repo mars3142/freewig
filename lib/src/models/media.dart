@@ -34,10 +34,10 @@ class Media {
   ///
   /// It starts at address (from [SeekOrigin.begin]) and uses the data for
   /// interpret the data as media. If it can be read, the return will be a
-  /// [Media] object. In case of an exception the result will be null.
-  factory Media(BinaryReader reader, int objectId, int address) {
+  /// [Media] object. In case of an exception or empty data the result will be null.
+  static Media? create(BinaryReader reader, int objectId, int address) {
     try {
-      Uint8List data;
+      Uint8List? data;
       var objectType = 0;
       reader.seek(address, SeekOrigin.begin);
       if (objectId == 0) {
@@ -48,8 +48,11 @@ class Media {
           data = _readMediaData(reader);
         }
       }
-      final object = Media._(_getObjectType(objectType), data);
-      return object;
+      if (data != null) {
+        final object = Media._(_getObjectType(objectType), data);
+        return object;
+      }
+      return null;
     } on Exception catch (ex) {
       print('Exception: $ex');
       return null;

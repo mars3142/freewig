@@ -12,14 +12,11 @@
  * all copies or substantial portions of the Software.
  */
 
-import 'package:meta/meta.dart';
-
 import '../../freewig.dart';
 import '../binary_reader.dart';
 import 'media.dart';
 
 /// A [Cartridge] represents the GWC file
-@immutable
 class Cartridge {
   /// The altitude of the start coordinate
   final double altitude;
@@ -60,16 +57,20 @@ class Cartridge {
   /// Completion code (can be encrypted with lua)
   final String completionCode;
 
-  /// Map of all [Media] objects
-  final Map<int, Media> mediaObjects;
-
   final int _splashScreenId;
 
   final int _smallIconId;
 
+  final BinaryReader _source;
+
+  final Map<int, int> _references;
+
+  var _lastObject = -1;
+
+  Media? _lastMedia;
+
   Cartridge._(
     this.cartridgeGuid,
-    this.mediaObjects,
     this.altitude,
     this.author,
     this.cartridgeDesc,
@@ -84,11 +85,13 @@ class Cartridge {
     this.startLocationDesc,
     this.typeOfCartridge,
     this.version,
+    this._references,
+    this._source,
   );
 
   /// Reading the GWC file and create a [Cartridge] or null in case of any
   /// parsing error.
-  factory Cartridge(BinaryReader reader) {
+  static Cartridge? create(BinaryReader reader) {
     try {
       final count = reader.getUShort();
       final references = <int, int>{};
@@ -129,14 +132,8 @@ class Cartridge {
 
       final completionCode = reader.getASCIIZ();
 
-      // initialise objects after cartridge data is loaded
-      final objects = <int, Media>{};
-      references.forEach((index, address) =>
-          {objects.putIfAbsent(index, () => Media(reader, index, address))});
-
       return Cartridge._(
         cartridgeGuid,
-        objects,
         altitude,
         author,
         cartridgeDesc,
@@ -154,6 +151,8 @@ class Cartridge {
         startLocationDesc,
         typeOfCartridge,
         version,
+        references,
+        reader,
       );
     } on Exception catch (ex) {
       print('Exception: $ex');
@@ -166,22 +165,42 @@ class Cartridge {
       identical(this, other) ||
       other is Cartridge &&
           runtimeType == other.runtimeType &&
-          cartridgeGuid == other.cartridgeGuid &&
-          mediaObjects == other.mediaObjects;
+          cartridgeGuid == other.cartridgeGuid;
 
   @override
-  int get hashCode => cartridgeGuid.hashCode ^ mediaObjects.hashCode;
+  int get hashCode => cartridgeGuid.hashCode;
+
+  /// get Media with objectId or null, if not available
+  Media? getMedia(int objectId) {
+    if (_lastObject == objectId && _lastMedia != null) {
+      return _lastMedia!;
+    }
+
+    if (_references.containsKey(objectId)) {
+      final address = _references[objectId];
+      final media = Media.create(_source, objectId, address!);
+
+      if (media != null) {
+        if (media.data.length < 128000) {
+          _lastObject = objectId;
+          _lastMedia = media;
+        }
+
+        return media;
+      }
+    }
+    return null;
+  }
+
+  /// get the count of attached media
+  int get mediaCount => _references.length;
 
   /// get splash screen media or null if not available
-  Media get splashScreen => mediaObjects.containsKey(_splashScreenId)
-      ? mediaObjects[_splashScreenId]
-      : null;
+  Media? get splashScreen => getMedia(_splashScreenId);
 
   /// get small icon media or null if not available
-  Media get smallIcon => mediaObjects.containsKey(_smallIconId)
-      ? mediaObjects[_smallIconId]
-      : null;
+  Media? get smallIcon => getMedia(_smallIconId);
 
   /// get luac media or null if not available
-  Media get luac => mediaObjects.containsKey(0) ? mediaObjects[0] : null;
+  Media? get luac => getMedia(0);
 }

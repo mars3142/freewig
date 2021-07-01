@@ -32,11 +32,20 @@ class LatLng {
     return _format(_longitude, 'EW');
   }
 
+  @override
+  String toString() {
+    return "$latitude $longitude".trim();
+  }
+
   String _format(double value, String suffix) {
     final isNegative = value < 0;
     value = value.abs();
 
     final degrees = value.floor();
+    if (degrees == 360) {
+      return "";
+    }
+
     final minutes = (value - degrees) * 60.0;
 
     var result = '';

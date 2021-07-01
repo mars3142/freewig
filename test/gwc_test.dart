@@ -15,13 +15,13 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:test/test.dart';
 import 'package:freewig/freewig.dart';
+import 'package:test/test.dart';
 
-Future<Cartridge> parseFile(File file) async {
+Future<Cartridge?> parseFile(File file) async {
   final bytes = await file.readAsBytes();
   final completer = Completer<Cartridge>();
-  await Future<Cartridge>(() => parseData(bytes))
+  await Future<Cartridge?>(() => parseData(bytes))
       .then(completer.complete)
       .catchError(completer.completeError);
   return completer.future;
@@ -29,27 +29,26 @@ Future<Cartridge> parseFile(File file) async {
 
 void main() {
   group('Cartridge TESTING.GWC', () {
-    Cartridge cartridgeData;
+    Cartridge? cartridgeData;
 
     setUp(() async {
       var file = File("testing.gwc");
       cartridgeData = await parseFile(file);
     });
 
-    test('Cartridge not empty', () {
-      expect(cartridgeData != null, isTrue);
-    });
-
     test('Cartridge name is "TESTING"', () {
-      expect(cartridgeData.cartridgeName, "TESTING");
+      expect(cartridgeData != null, isTrue);
+      expect(cartridgeData!.cartridgeName, "TESTING");
     });
 
     test('Completion Code is "ABCDEFGHIJKLMNOP"', () {
-      expect(cartridgeData.completionCode, "ABCDEFGHIJKLMNOP");
+      expect(cartridgeData != null, isTrue);
+      expect(cartridgeData!.completionCode, "ABCDEFGHIJKLMNOP");
     });
 
     test('Cartridge has 2 objects', () {
-      expect(cartridgeData.mediaObjects.length, 2);
+      expect(cartridgeData != null, isTrue);
+      expect(cartridgeData?.mediaCount, 2);
     });
   });
 }

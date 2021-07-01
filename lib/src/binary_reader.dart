@@ -23,7 +23,7 @@ class BinaryReader {
 
   /// Initialise the [BinaryReader] with data and endian, so the reader knows how to
   /// interpret the bytes.
-  BinaryReader({ByteData byteData, Endian endian})
+  BinaryReader({required ByteData byteData, Endian endian = Endian.little})
       : _byteData = byteData,
         _endian = endian,
         _index = 0;

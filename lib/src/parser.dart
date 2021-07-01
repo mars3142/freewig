@@ -20,7 +20,7 @@ import 'models/cartridge.dart';
 /// Parses a byte list and create a [Cartridge]
 ///
 /// If the byte list is a valid GWC file, the result will be [Cartridge] or null, if the parser failed.
-Cartridge parseData(Uint8List bytes) {
+Cartridge? parseData(Uint8List bytes) {
   try {
     const header = {0x02, 0x0a, 0x43, 0x41, 0x52, 0x54, 0x00}; // magic header
     final reader = BinaryReader(
@@ -34,7 +34,7 @@ Cartridge parseData(Uint8List bytes) {
       }
     }
 
-    return Cartridge(reader);
+    return Cartridge.create(reader);
   } on Exception catch (_) {
     return null;
   }

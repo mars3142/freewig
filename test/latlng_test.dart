@@ -12,8 +12,8 @@
  * all copies or substantial portions of the Software.
  */
 
-import 'package:test/test.dart';
 import 'package:freewig/freewig.dart';
+import 'package:test/test.dart';
 
 void main() {
   group('LatLng testing', () {

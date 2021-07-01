@@ -1,3 +1,7 @@
+## 0.2.0
+
+- package is now null-safety
+
 ## 0.1.2+2
 
 - remove dart:io - more web compatibility
