@@ -12,8 +12,8 @@
  * all copies or substantial portions of the Software.
  */
 
-import '../../freewig.dart';
 import '../binary_reader.dart';
+import '../latlng.dart';
 import 'media.dart';
 
 /// A [Cartridge] represents the GWC file

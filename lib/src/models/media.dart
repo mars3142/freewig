@@ -16,7 +16,6 @@ import 'dart:typed_data';
 
 import 'package:meta/meta.dart';
 
-import '../../freewig.dart';
 import '../binary_reader.dart';
 
 /// A [Media] is a representation of any file within the [Cartridge]
